@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="wrapper">
+  <view class="calendar-part">
+    <view class="calendar-topbar">
+      <view style="width: 75%; text-align: center; margin-left: 120rpx;">{{currentDate}}</view>
+      <view style="width: 15%;">ref</view>
+    </view>
+    <view class="calendar-week">
+      <view wx:for="{{weekName}}" wx:key="*this" class="week-names">
+        {{weekName[index]}}
+      </view>
+    </view>
+    <view class="calendar-date">
+      <view wx:for="{{dates}}" wx:key="*this" wx:for-index="vindex" class="dates-vertical">
+        <view wx:for="{{dates[vindex]}}" wx:key="this->key" wx:for-index="hindex" class="dates-horizontal" data-key="{{dates[vindex][hindex].key}}" data-object="{{dates[vindex][hindex]}}" style="{{dates[vindex][hindex].style}}" bindtap="dateTap">
+          {{dates[vindex][hindex].date}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <scroll-view class="event-part" scroll-y="true">
+    <view class="event1"></view>
+    <view class="event2"></view>
+  </scroll-view>
+</view>

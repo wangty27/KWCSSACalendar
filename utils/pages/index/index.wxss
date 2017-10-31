@@ -1,0 +1,103 @@
+/**index.wxss**/
+/*
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+*/
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.calendar-part{
+  display: flex;
+  flex-direction: column;
+  height: 45%;
+  width: 100%;
+}
+
+.calendar-topbar{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 11%;
+}
+
+.calendar-week{
+  display: flex;
+  align-items: center;
+  height: 11%;
+  border-bottom: 1rpx solid #000000;
+}
+
+.week-names{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  
+  height: 100%;
+  width: 14.2857%;
+}
+
+.calendar-date{
+  display: flex;
+  flex-direction: column;
+  height: 77%;
+  width: 100%;
+}
+
+.dates-vertical{
+  display: flex;
+  height: 18%;
+  margin-top: 2%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.dates-horizontal{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 10%;
+  border-radius: 50%;
+}
+
+.event-part{
+  height: 53%;
+  width: 100%;
+  margin-top: 3%;
+  border: 1rpx solid blue;
+}
+
+.event1{
+  height: 500rpx;
+  width: 100%;
+  background: red;
+}
+
+.event2{
+  height: 500rpx;
+  width: 100%;
+  background: blue;
+}
