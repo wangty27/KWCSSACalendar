@@ -1,0 +1,74 @@
+/* pages/login/login.wxss */
+
+.wrapper{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo{
+  height: 40vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-img{
+  height: 35vh;
+  width: 35vh;
+}
+
+.inputs{
+  height: 25vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-row{
+  display: flex;
+  width: 100vw;
+  justify-content: space-around;
+  margin-bottom: 20rpx;
+  font-size: 35rpx;
+}
+
+.input-name{
+  width: 23vw;
+  margin-left: 17vw;
+  display: flex;
+  align-items: center;
+}
+
+.input-content{
+  width: 40vw;
+  margin-right: 20vw;
+  border: 1rpx solid #888888;
+}
+
+.button{
+  height: 35vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-tap{
+  width: 50vw;
+  height: 7vh;
+  border: 1rpx solid #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20rpx;
+  margin-top: 10rpx;
+}
+
+.button-tap-hover{
+  background: #ECECEC;
+}

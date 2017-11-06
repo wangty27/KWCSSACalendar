@@ -1,0 +1,21 @@
+<!--pages/login/login.wxml-->
+
+<view class="wrapper">
+  <view class="logo">
+    <image class="logo-img" src="../../resource/logo.png"></image>
+  </view>
+  <view class="inputs">
+    <view class="input-row">
+      <view class="input-name">用户名：</view>
+      <input class="input-content" />
+    </view>
+    <view class="input-row">
+      <view class="input-name">密码：</view>
+      <input type="password" class="input-content" />
+    </view>
+  </view>
+  <view class="button">
+    <view class="button-tap" hover-class="button-tap-hover" hover-stay-time="100" bindtap="loginBtnClick">登录</view>
+    <view class="button-tap" hover-class="button-tap-hover" hover-stay-time="100" >注册</view>
+  </view>
+</view>

@@ -1,19 +1,18 @@
 {
   "pages":[
+    "pages/login/login",
     "pages/index/index",
     "pages/settings/settings",
     "pages/listView/listView",
-    "pages/addEvent/addEvent",
-    "pages/viewEvent/viewEvent",
-    "pages/logs/logs"
+    "pages/addEvent/addEvent"
   ],
   "tabBar":{
     "list":[{
       "pagePath":"pages/index/index",
-      "text":"首页"
+      "text":"日历"
     }, {
       "pagePath":"pages/listView/listView",
-      "text":"事件"
+      "text":"列表"
     }, {
       "pagePath":"pages/settings/settings",
       "text":"设置"
@@ -22,7 +21,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "KWCSSACalendar",
     "navigationBarTextStyle":"black"
   }
 }
