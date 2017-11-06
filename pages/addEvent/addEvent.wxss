@@ -1,1 +1,85 @@
 /* pages/addEvent/addEvent.wxss */
+
+page{
+  background: #FFFFFF;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title{
+  height: 5.5vh;
+  width: 100vw;
+  border-top: 1rpx solid #000000;
+  border-bottom: 1rpx solid #000000;
+  margin-bottom: 3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fields{
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1rpx solid #555555;
+  border-bottom: 1rpx solid #555555;
+  margin-bottom: 3vh;
+  font-size: 30rpx;
+}
+
+.vfields{
+  display: flex;
+  flex-direction: column;
+}
+
+.field-name-v{
+  width: 97%;
+  margin-left: 3%;
+}
+
+.field-name-h{
+  width: 15vw;
+  margin-left: 3vw;
+  height: 100%;
+}
+
+.field-input{
+  font-size: 30rpx;
+  width: 78vw;
+  margin-right: 3%;
+}
+
+.field-groups-row{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.field-group-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22vw;
+  border: 1rpx solid #000000;
+  margin: 7rpx;
+}
+
+.submit{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8vh;
+  width: 50vw;
+  border: 1rpx solid #000000;
+  margin-top: 30rpx;
+}
+
+.submit-hover{
+  background: #ECECEC;
+}

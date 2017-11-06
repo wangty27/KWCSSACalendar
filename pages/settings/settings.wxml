@@ -1,2 +1,4 @@
 <!--pages/settings/settings.wxml-->
 <text>pages/settings/settings.wxml</text>
+<button bindtap="C">C</button>
+<navigator url="../login/login">login</navigator>

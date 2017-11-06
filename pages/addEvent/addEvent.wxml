@@ -1,2 +1,53 @@
 <!--pages/addEvent/addEvent.wxml-->
-<text>pages/addEvent/addEvent.wxml</text>
+<view class="wrapper">
+  <view class="title">{{pageTitle}}</view>
+  <view class="fields">
+    <view class="field-name-h">名称：</view>
+    <input class="field-input" auto-focus placeholder="请输入名称" value="{{fieldTitle}}" bindinput="titleInput"></input>
+  </view>
+  <view class="vfields fields">
+    <view class="field-name-v">组别：</view>
+    <view class="field-groups-row">
+      <view id="group1" class="field-group-content" style="{{groupStyle[0]}}" bindtap="groupSelect">全员</view>
+      <view id="group2" class="field-group-content" style="{{groupStyle[1]}}" bindtap="groupSelect">外联部</view>
+      <view id="group3" class="field-group-content" style="{{groupStyle[2]}}" bindtap="groupSelect">人力资源部</view>
+      <view id="group4" class="field-group-content" style="{{groupStyle[3]}}" bindtap="groupSelect">组织部</view>
+    </view>
+    <view class="field-groups-row">
+      <view id="group5" class="field-group-content" style="{{groupStyle[4]}}" bindtap="groupSelect">信息部</view>
+      <view id="group6" class="field-group-content" style="{{groupStyle[5]}}" bindtap="groupSelect">宣传部</view>
+      <view id="group7" class="field-group-content" style="{{groupStyle[6]}}" bindtap="groupSelect">平台策划部</view>
+    </view>
+  </view>
+  <view class="vfields fields" hidden="{{!controlPermission}}">
+    <view class="field-name-v">允许部长修改：</view>
+    <view class="field-groups-row">
+      <view id="11" class="field-group-content" style="{{level[0].style}}" bindtap="levelSelect">允许</view>
+      <view id="22" class="field-group-content" style="{{level[1].style}}" bindtap="levelSelect">不允许</view>
+    </view>
+  </view>
+  <view class="vfields fields">
+    <view class="field-name-v">时间：</view>
+    <view style="display: flex; justify-content: space-around;">
+      <picker mode="date" value="{{pickDate}}" start="{{todayDate}}" bindchange="pickDateChange" style="width: 50vw; text-align: center;">
+        <view>{{selectDate}}</view>
+      </picker>
+      <picker mode="time" value="{{pickTimeStart}}" bindchange="pickTimeStartChange" style="width: 23vw; text-align: center;">
+        <view>{{selectTimeStart}}</view>
+      </picker>
+      -
+      <picker mode="time" value="{{pickTimeEnd}}" bindchange="pickTimeEndChange" style="width: 23vw; text-align: center;">
+        <view>{{selectTimeEnd}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="fields">
+    <view class="field-name-h">地点：</view>
+    <input class="field-input" placeholder="请输入地点" value="{{fieldPlace}}" bindinput="placeInput"></input>
+  </view>
+  <view class="vfields fields" style="margin-bottom: 50rpx;">
+    <view class="field-name-v">内容：</view>
+    <textarea auto-height placeholder="请输入内容" style="width: 94vw; margin: 5rpx 3vw 10rpx 3vw;" value="{{fieldContent}}" bindinput="contentInput"></textarea>
+  </view>
+  <view class="submit" hover-class="submit-hover" hover-stay-time="100" bindtap="submitEvent">提交</view>
+</view>

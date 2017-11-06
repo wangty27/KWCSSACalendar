@@ -2,8 +2,9 @@
 <view class="wrapper">
   <view class="calendar-part">
     <view class="calendar-topbar">
-      <view style="width: 75%; text-align: center; margin-left: 120rpx;">{{currentDate}}</view>
-      <view style="width: 15%;">ref</view>
+      <view style="width: 10%; height: 100%;"></view>
+      <view style="width: 80%; text-align: center; font-size: 50rpx;">{{currentDate}}</view>
+      <view class="refresh-button" hover-class="refresh-button-hover" hover-stay-time="100" bindtap="refreshEventList"><image src="../../resource/refreshBtn.png" style="height: 5.5vh; width: 5.5vh;"></image></view>
     </view>
     <view class="calendar-week">
       <view wx:for="{{weekName}}" wx:key="*this" class="week-names">
@@ -12,14 +13,23 @@
     </view>
     <view class="calendar-date">
       <view wx:for="{{dates}}" wx:key="*this" wx:for-index="vindex" class="dates-vertical">
-        <view wx:for="{{dates[vindex]}}" wx:key="this->key" wx:for-index="hindex" class="dates-horizontal" data-key="{{dates[vindex][hindex].key}}" data-object="{{dates[vindex][hindex]}}" style="{{dates[vindex][hindex].style}}" bindtap="dateTap">
+        <view wx:for="{{dates[vindex]}}" wx:key="this->key" wx:for-index="hindex" class="dates-horizontal" data-key="{{dates[vindex][hindex].key}}" data-key="{{dates[vindex][hindex].key}}" style="{{dates[vindex][hindex].style}}" bindtap="dateTap">
           {{dates[vindex][hindex].date}}
         </view>
       </view>
     </view>
   </view>
   <scroll-view class="event-part" scroll-y="true">
-    <view class="event1"></view>
-    <view class="event2"></view>
+    <view wx:for="{{events}}" wx:key="*this" wx:for-index="index" class="events">
+      <view class="events-container">
+        <view class="events-content">
+          <view class="events-row" style="font-size: 35rpx;">{{events[index].title}}</view>
+          <view class="events-row">{{events[index].group}}</view>
+          <view class="events-row">{{events[index].time}}</view>
+          <view class="events-row">{{events[index].place}}</view>
+        </view>
+      </view>
+    </view>
+    <view hidden="{{noEventShow}}" style="font-size: 30rpx; text-align: center; margin-top: 20rpx; color: #999999;">无事件</view>
   </scroll-view>
 </view>

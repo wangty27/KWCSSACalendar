@@ -1,66 +1,80 @@
 // pages/listView/listView.js
+
+const eventJs = require("../../utils/eventList.js")
+
+var eventList;
+var controlPermission;
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    controlPermission: true,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onLoad: function(){
+    eventList = eventJs.getEventList();
+
+    if (eventList.length == 0) {
+      this.setData({
+        noEventShow: false
+      })
+    } else {
+      this.setData({
+        noEventShow: true
+      })
+    }
+
+    this.setData({
+      eventList: eventList
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  onShow: function(){
+    if (eventJs.listUpdated()){
+      console.log("Updated List");
+      eventList = eventJs.getEventList();
+      this.setData({
+        eventList: eventList
+      })
+    }
+    if (eventList.length > 0) {
+      this.setData({
+        noEventShow: true
+      })
+    } else {
+      this.setData({
+        noEventShow: false
+      })
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  eventEdit: function(e){
+    console.log(e.currentTarget.dataset.object)
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  eventDelete: function(e){
+    let _this = this;
+    console.log(e.currentTarget.dataset.object);
+    wx.showModal({
+      title: "注意",
+      content: "删除事件后将无法恢复，确定删除吗？",
+      showCancel: true,
+      confirmText: "确定",
+      confirmColor: "#FF0000",
+      success: function(res){
+        if (res.confirm){
+          console.log("confirmDelete");
+          _this.deleteConfirm
+        }
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
   
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  eventAdd: function(){
+    wx.navigateTo({
+      url: "../addEvent/addEvent?entry=add",
+    })
   }
+  
+
 })
