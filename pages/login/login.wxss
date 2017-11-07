@@ -72,3 +72,16 @@
 .button-tap-hover{
   background: #ECECEC;
 }
+
+.registerWindow{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  position: absolute;
+  margin-top: 40vh;
+  height: 60vh;
+  width: 100vw;
+  background: #FFFFFF;
+}

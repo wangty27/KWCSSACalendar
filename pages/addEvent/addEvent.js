@@ -185,9 +185,6 @@ Page({
 
     if (title && time && place && content && groupS && levelS){
       functions.addEvent(eventTitle, groupSelected, date, startTime, endTime, eventPlace, eventContent, levelR)
-      wx.navigateBack({
-        delta: 1
-      })
     } else {
       console.log("no")
     }

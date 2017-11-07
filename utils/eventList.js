@@ -1,7 +1,6 @@
 /*
 eventObjectSample:
 { 
-  id: 1,
   year: 2017,
   month: 11,
   day: 27,
@@ -17,39 +16,116 @@ eventObjectSample:
 }
 */
 
+const userJs = require("./userInfo.js");
 
-
+var masterList = [];
 var eventList = [];
-var nextEventId = 1;
 var length = 0;
 var listUpdated = false;
 var listUpdateTimes = 0;
+var userInfo = userJs.getUserInfo();
 
 function addEvent(year, month, day, title, group, groupId, startTime, endTime, time, place, content, editLevel){
+  wx.showLoading({
+    title: "添加中",
+  })
   updateListSync();
-  eventList.push({
-    id: nextEventId, 
-    year: year, 
-    month: month, 
-    day: day, 
-    title: title, 
+  downloadEventList();
+  eventList = masterList;
+  length = masterList.length;
+  var event = {
+    id: 0,
+    year: year,
+    month: month,
+    day: day,
+    title: title,
     group: group,
     groupId: groupId,
     start: startTime,
     end: endTime,
-    time: time, 
-    place: place, 
+    time: time,
+    place: place,
     content: content,
     editLevel: editLevel
-  });
-  ++nextEventId;
-  ++length;
-  listUpdateTimes = 2;
-  listUpdated = true;
-  wx.setStorageSync("eventList", eventList);
-  //update server eventList
-  console.log("Added! Whoo!")
-  return true;
+  };
+  let tableID = 3105;
+  let newEvent = new wx.BaaS.TableObject(tableID);
+  let createEvent = newEvent.create()
+
+  createEvent.set(event).save().then((res) => {
+    wx.hideLoading()
+    wx.showToast({
+      icon: "success",
+      title: "添加成功",
+      duration: 700
+    })
+    console.log("added")
+    event.id = res.data._id;
+    console.log(event)
+    eventList.push(event);
+    ++length;
+    listUpdateTimes = 2;
+    listUpdated = true;
+    wx.setStorageSync("eventList", eventList);
+    //update server eventList
+    setTimeout(function(){
+      wx.navigateBack({
+        delta: 1
+      })
+      return true;
+    }, 700)
+  }, (err) => {
+    console.log("err")
+  })
+}
+
+function downloadEventList(){
+  let tableID = 3105;
+  let table = new wx.BaaS.TableObject(tableID);
+  table.find().then( (res) => {
+    masterList = [];
+    var objectList = res.data.objects;
+    var len = res.data.objects.length;
+    for (var i = 0; i < len; ++i){
+      var event = {
+        id: objectList[i].id,
+        year: objectList[i].year,
+        month: objectList[i].month,
+        day: objectList[i].day,
+        title: objectList[i].title,
+        group: objectList[i].group,
+        groupId: objectList[i].groupId,
+        start: objectList[i].start,
+        end: objectList[i].end,
+        time: objectList[i].time,
+        place: objectList[i].place,
+        content: objectList[i].content,
+        editLevel: objectList[i].editLevel
+      };
+      masterList.push(event);
+    }
+    console.log(masterList);
+    return true;
+  }, (err) => {
+    console.log("err");
+    return false;
+  })
+}
+
+function refreshEventList(){
+  if (downloadEventList()) {
+    eventList = [];
+    var len = masterList.length;
+    for (var i = 0; i < len; ++i) {
+      var event = masterList[i];
+      function inGroup(group){
+        return group == userInfo.group;
+      }
+      if (event.group.find(inGroup)){
+        eventList.push(event);
+      }
+    }
+  }
 }
 
 function removeEvent(id){
@@ -87,10 +163,6 @@ function getMonthEvent(year, month){
   return monthEventList;
 }
 
-function refreshEventList(){
-  //update event from server
-}
-
 function getEventById(id) {
   for (var i = 0; i < length; ++i){
     if (eventList[i].id == id){
@@ -114,11 +186,6 @@ function listUpdatedFunc(){
 function updateListSync(){
   eventList = wx.getStorageSync("eventList")
   length = eventList.length;
-  if (length == 0){
-    nextEventId = 1;
-  } else {
-    nextEventId = eventList[length - 1].id + 1;
-  }
 }
 
 module.exports = {

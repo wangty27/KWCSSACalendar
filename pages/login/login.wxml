@@ -1,21 +1,44 @@
 <!--pages/login/login.wxml-->
 
 <view class="wrapper">
+  <view class="registerWindow" hidden="{{!registerShow}}">
+    <view class="inputs">
+      <view class="input-row">
+        <view class="input-name">用户名：</view>
+        <input id="register-username" class="input-content" bindinput="inputFunction" value="{{registerContent}}" />
+      </view>
+      <view class="input-row">
+        <view class="input-name">密码：</view>
+        <input id="register-password" type="password" class="input-content" bindinput="inputFunction" value="{{registerContent}}" />
+      </view>
+      <view class="input-row">
+        <view class="input-name">中文姓名：</view>
+        <input id="register-realname" type="number" class="input-content" bindinput="inputFunction" value="{{registerContent}}" />
+      </view>
+      <view class="input-row">
+        <view class="input-name">注册码：</view>
+        <input id="register-code" type="number" class="input-content" bindinput="inputFunction" value="{{registerContent}}" />
+      </view>
+    </view>
+    <view class="button" style="height: 20vh;">
+      <view class="button-tap" hover-class="button-tap-hover" hover-stay-time="100" bindtap="submitBtnClick">注册</view>
+    </view>
+  </view>
   <view class="logo">
     <image class="logo-img" src="../../resource/logo.png"></image>
   </view>
   <view class="inputs">
     <view class="input-row">
       <view class="input-name">用户名：</view>
-      <input class="input-content" />
+      <input id="login-username" class="input-content" bindinput="inputFunction" value="{{loginContent}}" />
     </view>
     <view class="input-row">
       <view class="input-name">密码：</view>
-      <input type="password" class="input-content" />
+      <input id="login-password" type="password" class="input-content" bindinput="inputFunction" value="{{loginContent}}" />
     </view>
   </view>
   <view class="button">
     <view class="button-tap" hover-class="button-tap-hover" hover-stay-time="100" bindtap="loginBtnClick">登录</view>
-    <view class="button-tap" hover-class="button-tap-hover" hover-stay-time="100" >注册</view>
+    <view class="button-tap" hover-class="button-tap-hover" hover-stay-time="100" bindtap="registerBtnClick">注册</view>
   </view>
 </view>
