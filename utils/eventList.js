@@ -23,7 +23,9 @@ var eventList = [];
 var length = 0;
 var listUpdated = false;
 var listUpdateTimes = 0;
-var userInfo = userJs.getUserInfo();
+var userInfo;
+
+var lastUpdated;
 
 function addEvent(year, month, day, title, group, groupId, startTime, endTime, time, place, content, editLevel){
   wx.showLoading({
@@ -61,7 +63,6 @@ function addEvent(year, month, day, title, group, groupId, startTime, endTime, t
     })
     console.log("added")
     event.id = res.data._id;
-    console.log(event)
     eventList.push(event);
     ++length;
     listUpdateTimes = 2;
@@ -79,7 +80,8 @@ function addEvent(year, month, day, title, group, groupId, startTime, endTime, t
   })
 }
 
-function downloadEventList(){
+function downloadEventList(callBack){
+  console.log("downloading event")
   let tableID = 3105;
   let table = new wx.BaaS.TableObject(tableID);
   table.find().then( (res) => {
@@ -104,7 +106,20 @@ function downloadEventList(){
       };
       masterList.push(event);
     }
-    console.log(masterList);
+    refreshEventList();
+    callBack();
+
+    var date = new Date();
+    var year = date.getFullYear;
+    var month = date.getMonth + 1;
+    var day = date.getDate;
+    var hour = date.getHours;
+    var min = date.getMinutes;
+    var sec = date.getSeconds;
+
+    var timeStamp =  year + month + day + hour * 3600 + min * 60 + sec;
+    lastUpdated = timeStamp;
+
     return true;
   }, (err) => {
     console.log("err");
@@ -113,23 +128,63 @@ function downloadEventList(){
 }
 
 function refreshEventList(){
-  if (downloadEventList()) {
+  length = 0;
+  userInfo = userJs.getUserInfo();
+  var lastAddEvent = {id: 0};
+  if (userInfo.group[0] != 0) {
     eventList = [];
     var len = masterList.length;
     for (var i = 0; i < len; ++i) {
       var event = masterList[i];
-      function inGroup(group){
-        return group == userInfo.group;
-      }
-      if (event.group.find(inGroup)){
-        eventList.push(event);
+      var glen = event.groupId.length
+      var uglen = userInfo.group.length
+      for (var j = 0; j < glen; ++j){
+        for (var h = 0; h < uglen; ++h){
+          if (userInfo.group[h] == event.groupId[j]){
+            if (event.id != lastAddEvent.id){
+              console.log("Found Event");
+              eventList.push(event);
+              lastAddEvent = event;
+              ++length;
+            }
+          }
+        }
       }
     }
+  } else {
+    eventList = masterList;
+    length = masterList.length;
   }
+  listUpdated = true;
+  listUpdateTimes = 5;
+  wx.setStorageSync("eventList", eventList);
 }
 
 function removeEvent(id){
 
+  let tableID = 3105;
+  let eventID = id;
+
+  let table = new wx.BaaS.TableObject(tableID);
+  table.delete(eventID).then ( (res) => {
+    downloadEventList(function(){
+      wx.hideLoading()
+      wx.showToast({
+        icon: "success",
+        title: "删除成功",
+        mask: true,
+        duration: 700
+      })
+      setTimeout(function(){
+        wx.switchTab({
+          url: "../index/index",
+        })
+      }, 700)
+    })
+  }, (err) => {
+    console.log("err")
+  })
+  console.log("deleted");
 }
 
 function getEventList(){
@@ -188,14 +243,32 @@ function updateListSync(){
   length = eventList.length;
 }
 
+function checkUpdate(){
+  var date = new Date();
+  var year = date.getFullYear;
+  var month = date.getMonth + 1;
+  var day = date.getDate;
+  var hour = date.getHours;
+  var min = date.getMinutes;
+  var sec = date.getSeconds;
+
+  var timeStamp = year + month + day + hour * 3600 + min * 60 + sec;
+  var timePassed = timeStamp - lastUpdated;
+
+  if (timePassed >= 300){
+    downloadEventList();
+  }
+}
+
 module.exports = {
   getEventList: getEventList,
   addEvent: addEvent,
   removeEvent: removeEvent,
   getDateEvent: getDateEvent,
   getMonthEvent: getMonthEvent,
-  refreshEventList: refreshEventList,
+  refreshEventList: downloadEventList,//refreshEventList,
   getEventById: getEventById,
   listUpdated: listUpdatedFunc,
+  checkUpdate: checkUpdate,
   
 }

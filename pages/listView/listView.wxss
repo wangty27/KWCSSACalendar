@@ -5,7 +5,6 @@
   flex-direction: column;
   height: 99.8vh;
   width: 100vw;
-  border-top: 1rpx solid #000000;
 }
 
 .top-bar{
@@ -13,7 +12,8 @@
   justify-content: space-around;
   height: 6%;
   width: 100%;
-  border-bottom: 1rpx solid #000000;
+  border-top: 2rpx solid #000000;
+  border-bottom: 2rpx solid #000000;
 }
 
 .top-space{
@@ -61,7 +61,7 @@
 }
 
 .event-content{
-  border: 1rpx dotted #888888;
+  border: 2rpx dotted #777777;
 }
 
 .event-controls{

@@ -13,7 +13,7 @@
       </view>
       <view class="input-row">
         <view class="input-name">中文姓名：</view>
-        <input id="register-realname" type="number" class="input-content" bindinput="inputFunction" value="{{registerContent}}" />
+        <input id="register-realname" class="input-content" bindinput="inputFunction" value="{{registerContent}}" />
       </view>
       <view class="input-row">
         <view class="input-name">注册码：</view>

@@ -17,6 +17,7 @@ ControlPermission:
 */
 
 const userJs = require("../../utils/userInfo.js");
+const eventJs = require("../../utils/eventList.js");
 
 var loginInfo = {
   userName: "",
@@ -35,55 +36,55 @@ function processCode(code) {
   var ControlPermission;
   switch(code){
     case 201715793: {
-      Group = 0;
+      Group = [0];
       ControlPermission = 2;
     }; break;
     case 2017010: {
-      Group = 1;
+      Group = [1];
       ControlPermission = 0;
     }; break;
     case 2017011: {
-      Group = 1;
+      Group = [1];
       ControlPermission = 1;
     }; break;
     case 2017020: {
-      Group = 2;
+      Group = [2];
       ControlPermission = 0;
     }; break;
     case 2017021: {
-      Group = 2;
+      Group = [2];
       ControlPermission = 1;
     }; break;
     case 2017030: {
-      Group = 3;
+      Group = [3];
       ControlPermission = 0;
     }; break;
     case 2017031: {
-      Group = 3;
+      Group = [3];
       ControlPermission = 1;
     }; break;
     case 2017040: {
-      Group = 4;
+      Group = [4];
       ControlPermission = 0;
     }; break;
     case 2017041: {
-      Group = 4;
+      Group = [4];
       ControlPermission = 1;
     }; break;
     case 2017050: {
-      Group = 5;
+      Group = [5];
       ControlPermission = 0;
     }; break;
     case 2017051: {
-      Group = 5;
+      Group = [5];
       ControlPermission = 1;
     }; break;
     case 2017060: {
-      Group = 6;
+      Group = [6];
       ControlPermission = 0;
     }; break;
     case 2017061: {
-      Group = 6;
+      Group = [6];
       ControlPermission = 1;
     }; break;
     default: return false; break;
@@ -135,6 +136,7 @@ Page({
             duration: 700
           })
           userJs.loginUser(userInfo);
+          eventJs.refreshEventList();
           setTimeout(function(){
             wx.switchTab({
               url: "../index/index",

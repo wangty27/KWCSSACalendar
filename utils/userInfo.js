@@ -20,6 +20,7 @@ function getUserInfo(){
     group: group,
     controlPermission: controlPermission
   }
+  return userInfo;
 }
 
 module.exports = {

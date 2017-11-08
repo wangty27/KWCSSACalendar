@@ -1,7 +1,8 @@
 // pages/addEvent/addEvent.js
 
-const util = require("../../utils/util.js")
-const functions = require("./func.js")
+const util = require("../../utils/util.js");
+const functions = require("./func.js");
+const userJs = require("../../utils/userInfo.js");
 
 const date = new Date();
 const year = date.getFullYear();
@@ -53,12 +54,12 @@ function changeLevelStyle(id){
     }
     level[1] = {
       style: "",
-      sleect: false,
+      select: false,
     }
   } else {
     level[0] = {
       style: "",
-      sleect: false,
+      select: false,
     }
     level[1] = {
       style: "background: #555555; color: #FFFFFF",
@@ -96,6 +97,21 @@ Page({
     eventPlace = "";
     eventContent = "";
     level = [{ style: "", select: false }, { style: "", select: false }]
+  },
+
+  onShow: function(){
+    var userInfo = userJs.getUserInfo();
+    if (userInfo.controlPermission > 1){
+      controlPermission = true;
+      this.setData({
+        controlPermission: true,
+      })
+    } else {
+      controlPermission = false;
+      this.setData({
+        controlPermission: false,
+      })
+    }
   },
 
   groupSelect: function(e){
@@ -179,6 +195,9 @@ Page({
       levelR = 1;
       levelS = true;
     } else if (controlPermission == false){
+      var userInfo = userJs.getUserInfo();
+      groupSelected[userInfo.group] = true;
+      groupS = true;
       levelR = 1;
       levelS = true;
     }
@@ -186,7 +205,11 @@ Page({
     if (title && time && place && content && groupS && levelS){
       functions.addEvent(eventTitle, groupSelected, date, startTime, endTime, eventPlace, eventContent, levelR)
     } else {
-      console.log("no")
+      wx.showModal({
+        title: "错误",
+        content: '请正确填写或选择所有部分',
+        showCancel: false,
+      })
     }
   }
 

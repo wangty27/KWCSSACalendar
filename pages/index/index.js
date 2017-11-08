@@ -34,9 +34,11 @@ Page({
   onLoad: function () {
     
     //future delete this
-    var a = [];
-    wx.setStorageSync("eventList", a);
+    //var a = [];
+    //wx.setStorageSync("eventList", a);
     //============
+
+    eventList.refreshEventList();
 
     var currentDateIndex = date.getDay();
     var year = date.getFullYear();
@@ -62,6 +64,7 @@ Page({
   },
 
   onShow: function() {
+    //eventList.checkUpdate();
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
     var day = date.getDate();
@@ -140,6 +143,14 @@ Page({
       events: currentDayEvents
     })
     console.log("refresh")
+  },
+
+  onShareAppMessage: function () {
+    return {
+      title: "KWCSSA官方日历",
+      path: "/pages/login/login",
+      imageUrl: "../../resource/logo.png"
+    }
   }
 
 })

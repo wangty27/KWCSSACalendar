@@ -5,7 +5,7 @@
     <view class="field-name-h">名称：</view>
     <input class="field-input" auto-focus placeholder="请输入名称" value="{{fieldTitle}}" bindinput="titleInput"></input>
   </view>
-  <view class="vfields fields">
+  <view class="vfields fields" hidden="{{!controlPermission}}">
     <view class="field-name-v">组别：</view>
     <view class="field-groups-row">
       <view id="group1" class="field-group-content" style="{{groupStyle[0]}}" bindtap="groupSelect">全员</view>
@@ -50,4 +50,5 @@
     <textarea auto-height placeholder="请输入内容" style="width: 94vw; margin: 5rpx 3vw 10rpx 3vw;" value="{{fieldContent}}" bindinput="contentInput"></textarea>
   </view>
   <view class="submit" hover-class="submit-hover" hover-stay-time="100" bindtap="submitEvent">提交</view>
+  <view style="width: 100vw; height: 10vh;"></view>
 </view>

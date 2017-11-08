@@ -10,11 +10,11 @@
   <scroll-view class="events-part" scroll-y="true">
     <view wx:for="{{eventList}}" wx:key="*this" class="events">
       <view class="event-rows" style="font-size: 35rpx;">{{eventList[index].title}}</view>
-      <view class="event-rows" hidden="{{!controlPermission}}">{{eventList[index].group}}</view>
+      <view class="event-rows" >{{eventList[index].group}}</view>
       <view class="event-rows">{{eventList[index].time}}</view>
       <view class="event-rows">{{eventList[index].place}}</view>
       <view class="event-rows event-content">{{eventList[index].content}}</view>
-      <view class="event-controls" hidden="{{!controlPermission}}">
+      <view class="event-controls" hidden="{{controlPermission < eventList[index].editLevel}}">
         <view class="event-controls-button" hover-class="button-hover" hover-stay-time="100" bindtap="eventEdit" data-object="{{eventList[index]}}" hidden>编辑</view>
         <view class="event-controls-button" hover-class="button-hover" hover-stay-time="100" style="color: #FF0000; border-left 1rpx solid #888888; width: 100%;" bindtap="eventDelete" data-object="{{eventList[index]}}">删除</view>
       </view>

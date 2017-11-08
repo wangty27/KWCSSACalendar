@@ -4,7 +4,8 @@
     <view class="calendar-topbar">
       <view style="width: 10%; height: 100%;"></view>
       <view style="width: 80%; text-align: center; font-size: 50rpx;">{{currentDate}}</view>
-      <view class="refresh-button" hover-class="refresh-button-hover" hover-stay-time="100" bindtap="refreshEventList"><image src="../../resource/refreshBtn.png" style="height: 5.5vh; width: 5.5vh;"></image></view>
+      <!-- view class="refresh-button" hover-class="refresh-button-hover" hover-stay-time="100" bindtap="refreshEventList"><image src="../../resource/refreshBtn.png" style="height: 5.5vh; width: 5.5vh;"></image></view -->
+      <view style="width: 10%; height: 100%;"></view>
     </view>
     <view class="calendar-week">
       <view wx:for="{{weekName}}" wx:key="*this" class="week-names">
