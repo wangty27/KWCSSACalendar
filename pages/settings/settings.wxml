@@ -1,3 +1,12 @@
 <!--pages/settings/settings.wxml-->
-<button bindtap="C" style="margin: 30rpx;">Relogin</button>
-<button bindtap="B" style="margin: 30rpx;">Refresh</button>
+<view class="wrapper">
+  <view class="top">
+    <image src="../../resource/logo.png" class="top-logo"></image>
+    <view class="top-text">KWCSSACalendar</view>
+    <view class="top-text" style="font-size: 27rpx; height: 1vh;">v1.0.0</view>
+  </view>
+  <view class="body">
+    <button bindtap="C" style="margin: 30rpx;">Relogin</button>
+    <button bindtap="B" style="margin: 30rpx;">Refresh</button>
+  </view>
+</view>

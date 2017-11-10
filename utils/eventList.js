@@ -61,11 +61,10 @@ function addEvent(year, month, day, title, group, groupId, startTime, endTime, t
       title: "添加成功",
       duration: 700
     })
-    console.log("added")
     event.id = res.data._id;
     eventList.push(event);
     ++length;
-    listUpdateTimes = 2;
+    listUpdateTimes = 5;
     listUpdated = true;
     wx.setStorageSync("eventList", eventList);
     //update server eventList
@@ -76,12 +75,15 @@ function addEvent(year, month, day, title, group, groupId, startTime, endTime, t
       return true;
     }, 700)
   }, (err) => {
-    console.log("err")
+    wx.showModal({
+      title: '错误',
+      content: '请检查网络设置',
+      showCancel: false
+    })
   })
 }
 
 function downloadEventList(callBack){
-  console.log("downloading event")
   let tableID = 3105;
   let table = new wx.BaaS.TableObject(tableID);
   table.find().then( (res) => {
@@ -122,7 +124,11 @@ function downloadEventList(callBack){
 
     return true;
   }, (err) => {
-    console.log("err");
+    wx.showModal({
+      title: '错误',
+      content: '请检查网络设置',
+      showCancel: false
+    })
     return false;
   })
 }
@@ -142,7 +148,6 @@ function refreshEventList(){
         for (var h = 0; h < uglen; ++h){
           if (userInfo.group[h] == event.groupId[j]){
             if (event.id != lastAddEvent.id){
-              console.log("Found Event");
               eventList.push(event);
               lastAddEvent = event;
               ++length;
@@ -182,9 +187,12 @@ function removeEvent(id){
       }, 700)
     })
   }, (err) => {
-    console.log("err")
+    wx.showModal({
+      title: '错误',
+      content: '请检查网络设置',
+      showCancel: false
+    })
   })
-  console.log("deleted");
 }
 
 function getEventList(){

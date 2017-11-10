@@ -35,57 +35,83 @@ function processCode(code) {
   var Group;
   var ControlPermission;
   switch(code){
-    case 201715793: {
+    case 55898474: {
       Group = [0];
       ControlPermission = 2;
     }; break;
-    case 2017010: {
+    //外联
+    case 18375820: {
       Group = [1];
       ControlPermission = 0;
     }; break;
-    case 2017011: {
+    case 61911601: {
       Group = [1];
       ControlPermission = 1;
     }; break;
-    case 2017020: {
+    case 74386163: {
+      Group = [1, 2];
+      ControlPermission = 0;
+    };break;
+    //人力资源
+    case 38592013: {
       Group = [2];
       ControlPermission = 0;
     }; break;
-    case 2017021: {
+    case 45673282: {
       Group = [2];
       ControlPermission = 1;
     }; break;
-    case 2017030: {
+    //组织
+    case 91128475: {
       Group = [3];
       ControlPermission = 0;
     }; break;
-    case 2017031: {
+    case 67822345: {
       Group = [3];
       ControlPermission = 1;
     }; break;
-    case 2017040: {
+    case 17272745: {
+      Group = [3, 2];
+      ControlPermission = 0;
+    }; break;
+    //信息部
+    case 82837471: {
       Group = [4];
       ControlPermission = 0;
     }; break;
-    case 2017041: {
+    case 18475384: {
       Group = [4];
       ControlPermission = 1;
     }; break;
-    case 2017050: {
+    case 38372847: {
+      Group = [4, 2];
+      ControlPermission = 0;
+    }; break;
+    //宣传
+    case 95920103: {
       Group = [5];
       ControlPermission = 0;
     }; break;
-    case 2017051: {
+    case 73475728: {
       Group = [5];
       ControlPermission = 1;
     }; break;
-    case 2017060: {
+    case 38381929: {
+      Group = [5, 2];
+      ControlPermission = 0;
+    }; break;
+    //平台策划
+    case 19183875: {
       Group = [6];
       ControlPermission = 0;
     }; break;
-    case 2017061: {
+    case 28373718: {
       Group = [6];
       ControlPermission = 1;
+    }; break;
+    case 38475839: {
+      Group = [6, 2];
+      ControlPermission = 0;
     }; break;
     default: return false; break;
   }
@@ -152,7 +178,11 @@ Page({
         }
       }
     }, (err) => {
-      console.log("err");
+      wx.showModal({
+        title: '错误',
+        content: '请检查网络设置',
+        showCancel: false
+      })
     })
 
   },
@@ -182,9 +212,22 @@ Page({
   },
 
   registerBtnClick: function(){
+    loginInfo.userName = "";
+    loginInfo.passWord = "";
     this.setData({
       loginContent: "",
       registerShow: true
+    })
+  },
+
+  cancelBtnClick: function(){
+    registerInfo.userName = "";
+    registerInfo.passWord = "";
+    registerInfo.realName = "";
+    registerInfo.code = "";
+    this.setData({
+      registerContent: "",
+      registerShow: false
     })
   },
 
@@ -196,7 +239,6 @@ Page({
         content: "请填写所有部分",
         showCancel: false
       })
-      console.log(processedCode)
     } else if (processedCode == false) {
       wx.showModal({
         title: "注意",
@@ -228,6 +270,10 @@ Page({
             content: "注册失败，用户名已被注册",
             showCancel: false
           })
+          registerInfo.userName = "";
+          registerInfo.passWord = "";
+          registerInfo.realName = "";
+          registerInfo.code = "";
         } else {
 
           let createUser = new wx.BaaS.TableObject(tableID);
@@ -252,6 +298,10 @@ Page({
               mask: true,
               duration: 700
             })
+            registerInfo.userName = "";
+            registerInfo.passWord = "";
+            registerInfo.realName = "";
+            registerInfo.code = "";
             _this.setData({
               registerShow: false,
               registerContent: ""

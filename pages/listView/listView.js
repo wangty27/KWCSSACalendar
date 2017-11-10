@@ -99,7 +99,7 @@ Page({
     return {
       title: "KWCSSA官方日历",
       path: "/pages/login/login",
-      imageUrl: "../../resource/logo.png"
+      imageUrl: "../../resource/sharePic.png"
     }
   }
   

@@ -1,1 +1,39 @@
 /* pages/settings/settings.wxss */
+
+.wrapper{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.top{
+  height: 30vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-logo{
+  height: 22vh;
+  width: 22vh;
+}
+
+.top-text{
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  height: 1.5vh;
+  width: 100vw;
+  font-size: 35rpx;
+  text-align: center;
+}
+
+.body{
+  height: 70vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: lightblue;
+}

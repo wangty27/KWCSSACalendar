@@ -9,10 +9,6 @@ function loginUser(userObject){
   passWord = userObject.PassWord;
   group = userObject.Group;
   controlPermission = userObject.ControlPermission;
-  console.log(userName)
-  console.log(passWord)
-  console.log(group)
-  console.log(controlPermission)
 }
 
 function getUserInfo(){

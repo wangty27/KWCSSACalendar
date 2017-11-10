@@ -20,8 +20,11 @@
         <input id="register-code" type="number" class="input-content" bindinput="inputFunction" value="{{registerContent}}" />
       </view>
     </view>
-    <view class="button" style="height: 20vh;">
+    <view class="button" style="height: 10vh;">
       <view class="button-tap" hover-class="button-tap-hover" hover-stay-time="100" bindtap="submitBtnClick">注册</view>
+    </view>
+    <view class="button" style="height: 10vh;">
+      <view class="button-tap" hover-class="button-tap-hover" hover-stay-time="100" bindtap="cancelBtnClick">取消</view>
     </view>
   </view>
   <view class="logo">

@@ -32,11 +32,7 @@ Page({
   },
 
   onLoad: function () {
-    
-    //future delete this
-    //var a = [];
-    //wx.setStorageSync("eventList", a);
-    //============
+    let _this = this;
 
     eventList.refreshEventList();
 
@@ -61,16 +57,52 @@ Page({
       dates: currentMonthDates,
       events: currentDayEvents
     })
+    setTimeout(function () {
+      currentDayEvents = eventList.getDateEvent(dateSelected);
+      currentMonthEvents = eventList.getMonthEvent(year, month);
+      currentMonthDates = functions.updateCalendar(startkey - 1, year, month, day, currentMonthDates, currentMonthEvents);
+      _this.setData({
+        events: currentDayEvents,
+        dates: currentMonthDates
+      })
+      if (currentDayEvents.length > 0) {
+        _this.setData({
+          noEventShow: true
+        })
+      } else {
+        _this.setData({
+          noEventShow: false
+        })
+      }
+      setTimeout(function () {
+        currentDayEvents = eventList.getDateEvent(dateSelected);
+        currentMonthEvents = eventList.getMonthEvent(year, month);
+        currentMonthDates = functions.updateCalendar(startkey - 1, year, month, day, currentMonthDates, currentMonthEvents);
+        _this.setData({
+          events: currentDayEvents,
+          dates: currentMonthDates
+        })
+        if (currentDayEvents.length > 0) {
+          _this.setData({
+            noEventShow: true
+          })
+        } else {
+          _this.setData({
+            noEventShow: false
+          })
+        }
+      }, 300)
+    }, 300)
   },
 
   onShow: function() {
+    let _this = this;
     //eventList.checkUpdate();
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
     var day = date.getDate();
     dateSelected = {year: year, month: month, day: day};
     if (eventList.listUpdated()){
-      console.log("Updated List");
       currentDayEvents = eventList.getDateEvent(dateSelected);
       currentMonthEvents = eventList.getMonthEvent(year, month);
       currentMonthDates = functions.updateCalendar(startkey - 1, year, month, day, currentMonthDates, currentMonthEvents);
@@ -99,7 +131,6 @@ Page({
     currentMonthDates = functions.dateSelect(startkey, month, day, key, currentMonthDates).monthDates;
     dateSelected.day = functions.dateSelect(startkey, month, day, key, currentMonthDates).dateSelected
     currentDayEvents = eventList.getDateEvent(dateSelected);
-    console.log(dateSelected)
     this.setData({
       dates: currentMonthDates,
       events: currentDayEvents
@@ -142,14 +173,13 @@ Page({
       dates: currentMonthDates,
       events: currentDayEvents
     })
-    console.log("refresh")
   },
 
   onShareAppMessage: function () {
     return {
       title: "KWCSSA官方日历",
       path: "/pages/login/login",
-      imageUrl: "../../resource/logo.png"
+      imageUrl: "../../resource/sharePic.png"
     }
   }
 
