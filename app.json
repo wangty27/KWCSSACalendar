@@ -7,15 +7,24 @@
     "pages/addEvent/addEvent"
   ],
   "tabBar":{
+    "backgroundColor": "#F9F9F9",
+    "color": "#888888",
+    "selectedColor": "#000000",
     "list":[{
       "pagePath":"pages/index/index",
-      "text":"日历"
+      "text":"日历",
+      "iconPath": "resource/index-icon.png",
+      "selectedIconPath": "resource/index-icon-s.png"
     }, {
       "pagePath":"pages/listView/listView",
-      "text":"列表"
+      "text":"列表",
+      "iconPath": "resource/list-icon.png",
+      "selectedIconPath": "resource/list-icon-s.png"
     }, {
       "pagePath":"pages/settings/settings",
-      "text":"设置"
+      "text":"设置",
+      "iconPath": "resource/setting-icon.png",
+      "selectedIconPath": "resource/setting-icon-s.png"
     }]
   },
   "window":{
