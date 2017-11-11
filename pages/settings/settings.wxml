@@ -1,12 +1,29 @@
 <!--pages/settings/settings.wxml-->
 <view class="wrapper">
+  <view class="sub-body" hidden="{{subHidden}}">
+  </view>
+
   <view class="top">
     <image src="../../resource/logo.png" class="top-logo"></image>
-    <view class="top-text">KWCSSACalendar</view>
-    <view class="top-text" style="font-size: 27rpx; height: 1vh;">v1.0.0</view>
+    <view class="top-text">KWCSSA日历</view>
   </view>
   <view class="body">
-    <button bindtap="C" style="margin: 30rpx;">Relogin</button>
-    <button bindtap="B" style="margin: 30rpx;">Refresh</button>
+    <view class="body-rows" style="flex-direction: column; justify-content: center; height: 10vh; border-bottom: 2rpx solid #DDDDDD;">
+      <view class="row-greeting" style="font-size: 38rpx;">Hi, {{name}}</view>
+      <view class="row-greeting">组别：{{group}}</view>
+    </view>
+    <view data-id="refresh" class="row-options body-rows" style="margin-top: 50rpx;" hover-class="hover" hover-stay-time="100" bindtap="optionTap">
+      <view class="option-text">刷新事件</view>
+    </view>
+    <view data-id="relogin" class="row-options body-rows" hover-class="hover" hover-stay-time="100" bindtap="optionTap">
+      <view class="option-text">重新登录</view>
+    </view>
+    <view data-id="issue" class="row-options body-rows" hover-class="hover" hover-stay-time="100" bindtap="optionTap">
+      <view class="option-text">问题与建议</view>
+    </view>
+    <view data-id="about" class="row-options body-rows" hover-class="hover" hover-stay-time="100" style="border-bottom: 2rpx solid #DDDDDD" bindtap="optionTap">
+      <view class="option-text">关于</view>
+    </view>
   </view>
+  <view class="bottom">Version 1.0</view>
 </view>

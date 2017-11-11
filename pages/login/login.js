@@ -49,7 +49,7 @@ function processCode(code) {
       ControlPermission = 1;
     }; break;
     case 74386163: {
-      Group = [1, 2];
+      Group = [2, 1];
       ControlPermission = 0;
     };break;
     //人力资源
@@ -71,7 +71,7 @@ function processCode(code) {
       ControlPermission = 1;
     }; break;
     case 17272745: {
-      Group = [3, 2];
+      Group = [2, 3];
       ControlPermission = 0;
     }; break;
     //信息部
@@ -84,7 +84,7 @@ function processCode(code) {
       ControlPermission = 1;
     }; break;
     case 38372847: {
-      Group = [4, 2];
+      Group = [2, 4];
       ControlPermission = 0;
     }; break;
     //宣传
@@ -97,7 +97,7 @@ function processCode(code) {
       ControlPermission = 1;
     }; break;
     case 38381929: {
-      Group = [5, 2];
+      Group = [2, 5];
       ControlPermission = 0;
     }; break;
     //平台策划
@@ -110,7 +110,7 @@ function processCode(code) {
       ControlPermission = 1;
     }; break;
     case 38475839: {
-      Group = [6, 2];
+      Group = [2, 6];
       ControlPermission = 0;
     }; break;
     default: return false; break;

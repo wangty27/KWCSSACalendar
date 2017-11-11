@@ -1,5 +1,6 @@
 var userName;
 var passWord;
+var realName;
 var group;
 var controlPermission;
 
@@ -7,6 +8,7 @@ var controlPermission;
 function loginUser(userObject){
   userName = userObject.UserName;
   passWord = userObject.PassWord;
+  realName = userObject.RealName;
   group = userObject.Group;
   controlPermission = userObject.ControlPermission;
 }
@@ -14,7 +16,8 @@ function loginUser(userObject){
 function getUserInfo(){
   var userInfo = {
     group: group,
-    controlPermission: controlPermission
+    controlPermission: controlPermission,
+    name: realName
   }
   return userInfo;
 }

@@ -47,7 +47,6 @@ Page({
     })
 
     if (eventJs.listUpdated()){
-      console.log("Updated List");
       eventList = eventJs.getEventList();
       this.setData({
         eventList: eventList

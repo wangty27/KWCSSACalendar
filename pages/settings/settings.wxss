@@ -17,23 +17,67 @@
 }
 
 .top-logo{
-  height: 22vh;
-  width: 22vh;
+  height: 25vh;
+  width: 25vh;
 }
 
 .top-text{
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-  height: 1.5vh;
+  height: 3.5vh;
   width: 100vw;
-  font-size: 35rpx;
+  font-size: 30rpx;
   text-align: center;
 }
 
 .body{
-  height: 70vh;
+  margin-top: 3vh;
+  height: 55vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
-  background: lightblue;
+}
+
+.body-rows{
+  display: flex;
+  align-items: center;
+  border-top: 2rpx solid #DDDDDD; 
+}
+
+.row-greeting{
+  height: 45%;
+  font-size: 28rpx;
+}
+
+.row-options{
+  height: 7vh;
+  width: 100vw;
+}
+
+.option-text{
+  margin: 10rpx 0rpx 10rpx 20rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 33rpx;
+}
+
+.hover{
+  background: #ECECEC;
+}
+
+.bottom{
+  height: 14vh;
+  width: 100vw;
+  text-align: center;
+  color: #ECECEC;
+  font-size: 30rpx;
+}
+
+.sub-body{
+  display: flex;
+  margin-top: 30vh;
+  height: 69vh;
+  width: 100vw;
+  position: absolute;
+  z-index: 100;
+  background: lightgrey;
 }
