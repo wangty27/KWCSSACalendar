@@ -1,6 +1,30 @@
 <!--pages/settings/settings.wxml-->
 <view class="wrapper">
   <view class="sub-body" hidden="{{subHidden}}">
+    <view class="sub-body-issue" hidden="{{subIssueHidden}}">
+      <view class="cancelBtn">
+        <image class="calcelBtn-tap" bindtap="cancelBtnClick" hover-class="button-tap-hover" src="../../resource/addBtn.png"></image>
+      </view>
+      <view class="issue-content">
+        <view class="issue-title">请输入问题或建议</view>
+        <view class="issue-inputs" style="height: 5.6vh; margin-top: 5vw;">
+          <view class="issue-input-title">标题：</view>
+          <input class="issue-input-title-text" value="{{inputField}}" bindinput="issueTitleInput"></input>
+        </view>
+        <view class="issue-inputs" style="height: 40vh;">
+          <textarea class="issue-input-text" value="{{inputField}}" bindinput="issueContentInput"></textarea>
+        </view>
+      </view>
+      <view class="button" style="height: 10vh;">
+        <view class="button-tap" hover-class="button-tap-hover" hover-stay-time="100" bindtap="submitBtnClick">提交</view>
+      </view>
+    </view>
+    <view class="sub-body-about" hidden="{{subAboutHidden}}">
+      <view class="cancelBtn">
+        <image class="calcelBtn-tap" bindtap="cancelBtnClick" hover-class="button-tap-hover" src="../../resource/addBtn.png"></image>
+      </view>
+      <view>About goes here!</view>
+    </view>
   </view>
 
   <view class="top">
@@ -19,7 +43,7 @@
       <view class="option-text">重新登录</view>
     </view>
     <view data-id="issue" class="row-options body-rows" hover-class="hover" hover-stay-time="100" bindtap="optionTap">
-      <view class="option-text">问题与建议</view>
+      <view class="option-text">问题或建议</view>
     </view>
     <view data-id="about" class="row-options body-rows" hover-class="hover" hover-stay-time="100" style="border-bottom: 2rpx solid #DDDDDD" bindtap="optionTap">
       <view class="option-text">关于</view>

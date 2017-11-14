@@ -134,7 +134,7 @@ Page({
 
     const regExp = [loginInfo.userName]
 
-    query.in("UserName", regExp)//loginInfo.userName)
+    query.in("UserName", regExp)//loginInfo.userName
     
     // for server
     let tableID = 3101;

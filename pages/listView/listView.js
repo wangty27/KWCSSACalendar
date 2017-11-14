@@ -96,7 +96,7 @@ Page({
 
   onShareAppMessage: function () {
     return {
-      title: "KWCSSA官方日历",
+      title: "KWCSSA日历",
       path: "/pages/login/login",
       imageUrl: "../../resource/sharePic.png"
     }

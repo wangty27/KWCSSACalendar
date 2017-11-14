@@ -7,6 +7,11 @@ var userInfo;
 var name;
 var group;
 
+var issue = {
+  title: "",
+  content: "",
+}
+
 function printGroup(group){
   var len = group.length;
   var relval = "";
@@ -36,7 +41,9 @@ function printGroup(group){
 Page({
 
   data: {
-    subHidden: true
+    subHidden: true,
+    subIssueHidden: true,
+    subAboutHidden: true
   },
 
   onLoad: function(){
@@ -59,18 +66,58 @@ Page({
       })
     } else if (id == "issue"){
       this.setData({
-        subHidden: false
+        subHidden: false,
+        subIssueHidden: false
       })
     } else if (id == "about"){
       this.setData({
-        subHidden: false
+        subHidden: false,
+        subAboutHidden: false
       })
     }
   },
 
+  issueTitleInput: function(e){
+    issue.title = e.detail.value;
+  },
+
+  issueContentInput: function(e){
+    issue.content = e.detail.value;
+  },
+
+  submitBtnClick: function() {
+    if (issue.title == ""){
+      wx.showModal({
+        title: '错误',
+        content: '请输入标题',
+        showCancel: false
+      })
+    } else if (issue.content == ""){
+      wx.showModal({
+        title: '错误',
+        content: '请输入内容',
+        showCancel: false
+      })
+    } else {
+      console.log(issue.title)
+      console.log(issue.content)
+    }
+  },
+
+  cancelBtnClick: function() {
+    issue.title = "";
+    issue.content = "";
+    this.setData({
+      subHidden: true,
+      subIssueHidden: true,
+      subAboutHidden: true,
+      inputField: ""
+    })
+  },
+
   onShareAppMessage: function () {
     return {
-      title: "KWCSSA官方日历",
+      title: "KWCSSA日历",
       path: "/pages/login/login",
       imageUrl: "../../resource/sharePic.png"
     }

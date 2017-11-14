@@ -79,5 +79,96 @@
   width: 100vw;
   position: absolute;
   z-index: 100;
-  background: lightgrey;
+  background: #FFFFFF;
+  border-top: 2rpx solid #DDDDDD;
+}
+
+.sub-body-about{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-body-issue{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cancelBtn{
+  height: 4.4vh;
+  width: 100vw;
+}
+
+.calcelBtn-tap{
+  margin-top: 1vh;
+  margin-left: 93vw;
+  height: 4.4vh;
+  width: 4.4vh;
+}
+
+.issue-content{
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  width: 100vw;
+}
+
+.issue-title{
+  height: 4.4vh;
+  width: 100vw;
+  text-align: center;
+  font-size: 33rpx;
+}
+
+.issue-inputs{
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  font-size: 30rpx;
+}
+
+.issue-input-title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15vw;
+  margin-left: 8vw;
+}
+
+.issue-input-title-text{
+  width: 74vw;
+  margin-right: 10vw;
+  border-bottom: 2rpx solid #DDDDDD;
+}
+
+.issue-input-text{
+  width: 89vw;
+  margin: 5vw 5.5vw 5vw 5.5vw;
+  border: 2rpx solid #DDDDDD;
+}
+
+.button{
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-tap{
+  width: 50vw;
+  height: 7vh;
+  border: 1rpx solid #DDDDDD;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20rpx;
+  margin-top: 10rpx;
+}
+
+.button-tap-hover{
+  background: #ECECEC;
 }
