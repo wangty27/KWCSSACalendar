@@ -172,3 +172,21 @@
 .button-tap-hover{
   background: #ECECEC;
 }
+
+.about-title{
+  height: 4.4vh;
+  width: 100vw;
+  text-align: center;
+  font-size: 33rpx;
+}
+
+.about-text{
+  margin: 2vh 5.5vw 2vh 5.5vw;
+  font-size: 28rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-text-t{
+  margin-top: 1vh;
+}

@@ -6,10 +6,30 @@ const userJs = require("../../utils/userInfo.js")
 var userInfo;
 var name;
 var group;
+var controlPermission
+
+var date = new Date();
+
+var issueRemain = true;
+var lastIssueDay = {year: 1900, month: 1, day: 1};
 
 var issue = {
   title: "",
   content: "",
+}
+
+function updateIssueRemain(){
+  date = new Date();
+  var curYear = date.getFullYear();
+  var curMonth = date.getMonth() + 1;
+  var curDay = date.getDate();
+  if (curYear > lastIssueDay.year){
+    issueRemain = true;
+  } else if (curMonth > lastIssueDay.month){
+    issueRemain = true;
+  } else if (curYear == lastIssueDay.year && curMonth == lastIssueDay.month && curDay > lastIssueDay.day){
+    issueRemain = true;
+  }
 }
 
 function printGroup(group){
@@ -25,6 +45,8 @@ function printGroup(group){
       case 6: relval = "平台策划部"; break;
       default: break;
   }
+  if (controlPermission == 1);
+  relval += "部长";
   if (len > 1){
     switch (group[1]){
       case 1: relval += " 外联部秘书"; break;
@@ -49,11 +71,16 @@ Page({
   onLoad: function(){
     userInfo = userJs.getUserInfo();
     name = userInfo.name;
+    controlPermission = userInfo.controlPermisson;
     group = printGroup(userInfo.group);
     this.setData({
       name: name,
       group: group
     })
+  },
+
+  onShow: function(){
+    updateIssueRemain();
   },
 
   optionTap: function (e){
@@ -86,6 +113,12 @@ Page({
   },
 
   submitBtnClick: function() {
+    let _this = this;
+
+    let tableID = 3203;
+    let Table = new wx.BaaS.TableObject(tableID);
+    let table = Table.create();
+
     if (issue.title == ""){
       wx.showModal({
         title: '错误',
@@ -98,9 +131,51 @@ Page({
         content: '请输入内容',
         showCancel: false
       })
+    } else if (!issueRemain) {
+      wx.showModal({
+        title: '错误',
+        content: '已达到每日使用次数限制，请通过微信联系或明天再次提交',
+        showCancel: false
+      })
     } else {
-      console.log(issue.title)
-      console.log(issue.content)
+      wx.showLoading({
+        title: '提交中',
+        mask: true
+      })
+      let entry = {
+        User: userInfo.name,
+        Title: issue.title,
+        Content: issue.content
+      }
+      table.set(entry).save().then( (res) => {
+        wx.hideLoading();
+        wx.showToast({
+          icon: 'success',
+          title: '提交成功',
+          duration: 700
+        })
+        issueRemain = false;
+        date = new Date();
+        lastIssueDay = {
+          year: date.getFullYear(), 
+          month: date.getMonth() + 1, 
+          day: date.getDate()
+        }
+        issue.title = "";
+        issue.content = "";
+        this.setData({
+          subHidden: true,
+          subIssueHidden: true,
+          subAboutHidden: true,
+          inputField: ""
+        })
+      }, (err) => {
+        wx.showModal({
+          title: '错误',
+          content: '提交失败，请检查网络设置',
+          showCancel: false
+        })
+      })
     }
   },
 
