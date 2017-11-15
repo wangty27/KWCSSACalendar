@@ -45,8 +45,9 @@ function printGroup(group){
       case 6: relval = "平台策划部"; break;
       default: break;
   }
-  if (controlPermission == 1);
-  relval += "部长";
+  if (controlPermission == 1) {
+    relval += "部长";
+  }
   if (len > 1){
     switch (group[1]){
       case 1: relval += " 外联部秘书"; break;
