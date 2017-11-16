@@ -82,7 +82,7 @@ Page({
             title: "删除中",
             mask: true,
           })
-          eventJs.removeEvent(eventToDelete);
+          eventJs.removeEvent(eventToDelete, "list");
         }
       }
     })

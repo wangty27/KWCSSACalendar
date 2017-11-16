@@ -67,6 +67,7 @@ function addEvent(year, month, day, title, group, groupId, startTime, endTime, t
     listUpdateTimes = 5;
     listUpdated = true;
     wx.setStorageSync("eventList", eventList);
+    downloadEventList();
     //update server eventList
     setTimeout(function(){
       wx.navigateBack({
@@ -165,13 +166,14 @@ function refreshEventList(){
   wx.setStorageSync("eventList", eventList);
 }
 
-function removeEvent(id){
+function removeEvent(id, entry){
 
   let tableID = 3105;
   let eventID = id;
 
   let table = new wx.BaaS.TableObject(tableID);
   table.delete(eventID).then ( (res) => {
+    
     downloadEventList(function(){
       wx.hideLoading()
       wx.showToast({
@@ -180,11 +182,13 @@ function removeEvent(id){
         mask: true,
         duration: 700
       })
-      setTimeout(function(){
-        wx.switchTab({
-          url: "../index/index",
-        })
-      }, 700)
+      if (entry == "list"){
+        setTimeout(function(){
+          wx.switchTab({
+            url: "../index/index",
+          })
+        }, 700)
+      }
     })
   }, (err) => {
     wx.showModal({
@@ -193,6 +197,9 @@ function removeEvent(id){
       showCancel: false
     })
   })
+
+  listUpdated = true;
+  listUpdateTimes = 5;
 }
 
 function getEventList(){
@@ -268,6 +275,11 @@ function checkUpdate(){
   }
 }
 
+function getMasterList() {
+  updateListSync();
+  return masterList;
+}
+
 module.exports = {
   getEventList: getEventList,
   addEvent: addEvent,
@@ -278,5 +290,6 @@ module.exports = {
   getEventById: getEventById,
   listUpdated: listUpdatedFunc,
   checkUpdate: checkUpdate,
+  getMasterList: getMasterList,
   
 }

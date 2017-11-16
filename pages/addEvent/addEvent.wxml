@@ -47,7 +47,7 @@
   </view>
   <view class="vfields fields" style="margin-bottom: 50rpx;">
     <view class="field-name-v">内容：</view>
-    <textarea auto-height placeholder="请输入内容" style="width: 94vw; margin: 5rpx 3vw 10rpx 3vw;" value="{{fieldContent}}" bindinput="contentInput"></textarea>
+    <textarea auto-height placeholder="请输入内容" style="width: 94vw; margin: 5rpx 3vw 10rpx 3vw;" value="{{fieldContent}}" maxlength="-1" bindinput="contentInput"></textarea>
   </view>
   <view class="submit" hover-class="submit-hover" hover-stay-time="100" bindtap="submitEvent">提交</view>
   <view style="width: 100vw; height: 10vh;"></view>

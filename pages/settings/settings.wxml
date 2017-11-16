@@ -54,6 +54,9 @@
     <view data-id="about" class="row-options body-rows" hover-class="hover" hover-stay-time="100" style="border-bottom: 2rpx solid #DDDDDD" bindtap="optionTap">
       <view class="option-text">关于</view>
     </view>
+    <view data-id="panel" class="row-options body-rows" hover-class="hover" hover-stay-time="100" style="border-top: 0.001rpx solid #FFFFFF; border-bottom: 2rpx solid #DDDDDD" bindtap="optionTap" hidden="{{!showPanel}}">
+      <view class="option-text">控制面板</view>
+    </view>
   </view>
   <view class="bottom">Version 1.0</view>
 </view>

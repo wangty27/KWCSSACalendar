@@ -6,7 +6,8 @@ const userJs = require("../../utils/userInfo.js")
 var userInfo;
 var name;
 var group;
-var controlPermission
+var controlPermission;
+var showPanel;
 
 var date = new Date();
 
@@ -33,6 +34,7 @@ function updateIssueRemain(){
 }
 
 function printGroup(group){
+  showPanel = false;
   var len = group.length;
   var relval = "";
   switch (group[0]){
@@ -45,9 +47,6 @@ function printGroup(group){
       case 6: relval = "平台策划部"; break;
       default: break;
   }
-  if (controlPermission == 1) {
-    relval += "部长";
-  }
   if (len > 1){
     switch (group[1]){
       case 1: relval += " 外联部秘书"; break;
@@ -55,6 +54,7 @@ function printGroup(group){
       case 4: relval += " 信息部秘书"; break;
       case 5: relval += " 宣传部秘书"; break;
       case 6: relval += " 平台策划部秘书"; break;
+      case 8: showPanel = true; break;
       default: break;
     }
   }
@@ -72,21 +72,38 @@ Page({
   onLoad: function(){
     userInfo = userJs.getUserInfo();
     name = userInfo.name;
-    controlPermission = userInfo.controlPermisson;
     group = printGroup(userInfo.group);
     this.setData({
       name: name,
-      group: group
+      group: group,
+      showPanel: showPanel
     })
   },
 
   onShow: function(){
     updateIssueRemain();
+    showPanel = false;
+    userInfo = userJs.getUserInfo();
+    name = userInfo.name;
+    group = printGroup(userInfo.group);
+    if (name != this.data.name || group != this.data.group){
+      this.setData({
+        name: name,
+        group: group,
+        showPanel: showPanel
+      })
+    }
   },
 
   optionTap: function (e){
     var id = e.currentTarget.dataset.id
     if (id == "refresh"){
+      wx.showLoading({
+        title: '刷新中',
+      })
+      setTimeout(function(){
+        wx.hideLoading()
+      }, 2000)
       eventJs.refreshEventList();
     } else if (id == "relogin"){
       wx.navigateTo({
@@ -101,6 +118,10 @@ Page({
       this.setData({
         subHidden: false,
         subAboutHidden: false
+      })
+    } else if (id == "panel"){
+      wx.navigateTo({
+        url: '../controlPanel/controlPanel',
       })
     }
   },

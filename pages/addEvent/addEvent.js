@@ -20,6 +20,8 @@ var eventContent = "";
 var level=[{style: "", select: false}, {style: "", select: false}]
 var controlPermission;
 
+var masterPermission = false;
+
 function changeGroupStyle(id){
   if (id == 0){
     if (groupStyle[0] == ""){
@@ -85,6 +87,13 @@ Page({
       this.setData({
         pageTitle: pageTitle[0]
       })
+    } else if (option.entry == "panel"){
+      masterPermission = true;
+      controlPermission = true;
+      this.setData({
+        controlPermission: true,
+        pageTitle: "Master Adding"
+      })
     } else {
       this.setData({
         pageTitle: pageTitle[1]
@@ -100,17 +109,19 @@ Page({
   },
 
   onShow: function(){
-    var userInfo = userJs.getUserInfo();
-    if (userInfo.controlPermission > 1){
-      controlPermission = true;
-      this.setData({
-        controlPermission: true,
-      })
-    } else {
-      controlPermission = false;
-      this.setData({
-        controlPermission: false,
-      })
+    if (!masterPermission){
+      var userInfo = userJs.getUserInfo();
+      if (userInfo.controlPermission > 1){
+        controlPermission = true;
+        this.setData({
+          controlPermission: true,
+        })
+      } else {
+        controlPermission = false;
+        this.setData({
+          controlPermission: false,
+        })
+      }
     }
   },
 

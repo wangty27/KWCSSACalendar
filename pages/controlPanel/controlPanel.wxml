@@ -1,0 +1,45 @@
+<!--pages/controlPanel/controlPanel.wxml-->
+<view class="wrapper">
+  <view class="login" hidden="{{loginHidden}}">
+    <input type="number" class="login-password" bindinput="passwordInput"></input>
+  </view>
+  <view class="body">
+    <view class="eventList">
+      <view class="eventList-top">
+        <view class="top-sides" bindtap="eventRefresh"><image src="../../resource/refreshBtn.png" style="height: 3.5vh; width: 3.5vh;"></image></view>
+        <view class="top-title">事件</view>
+        <view class="top-sides" bindtap="eventAdd"><image src="../../resource/addBtn.png" style="height: 3.5vh; width: 3.5vh;"></image></view>
+      </view>
+      <scroll-view class="eventList-content" scroll-y="true">
+        <view wx:for="{{eventList}}" wx:key="*this" class="events">
+          <view class="events-field">Title: {{eventList[index].title}}</view>
+          <view class="events-field">Group: {{eventList[index].group}}</view>
+          <view class="events-field">Time: {{eventList[index].time}}</view>
+          <view class="events-field">Place: {{eventList[index].place}}</view>
+          <view class="events-field">Content: {{eventList[index].content}}</view>
+          <view class="events-field" style="font-size: 23rpx;">Id: {{eventList[index].id}}</view>
+          <view data-id="{{eventList[index].id}}" class="events-delete" bindtap="eventDelete" hover-class="hover" hover-stay-time="100">删除</view>
+        </view>
+        <view style="width: 100vw; height: 5vh;"></view>
+      </scroll-view>
+    </view>
+    <view class="issueList">
+      <view class="issueList-top">
+        <view class="top-sides" bindtap="issueRefresh"><image src="../../resource/refreshBtn.png" style="height: 3.5vh; width: 3.5vh;"></image></view>
+        <view class="top-title">问题与建议</view>
+        <view class="top-sides"></view>
+      </view>
+      <scroll-view class="issueList-content" scroll-y="true">
+        <view wx:for="{{issueList}}" wx:key="*this" class="events">
+          <view class="events-field">Title: {{issueList[index].title}}</view>
+          <view class="events-field">Content: {{issueList[index].content}}</view>
+          <view class="events-field">From: {{issueList[index].user}}</view>
+          <view class="events-field">Created_at: {{issueList[index].create}}</view>
+          <view class="events-field" style="font-size: 23rpx;">Id: {{issueList[index].id}}</view>
+          <view data-id="{{issueList[index].id}}" class="events-delete" bindtap="issueDelete" hover-class="hover" hover-stay-time="100">删除</view>
+        </view>
+        <view style="width: 100vw; height: 3vh;"></view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

@@ -4,7 +4,8 @@
     "pages/index/index",
     "pages/settings/settings",
     "pages/listView/listView",
-    "pages/addEvent/addEvent"
+    "pages/addEvent/addEvent",
+    "pages/controlPanel/controlPanel"
   ],
   "tabBar":{
     "backgroundColor": "#F9F9F9",
