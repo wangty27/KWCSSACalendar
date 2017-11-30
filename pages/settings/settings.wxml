@@ -27,7 +27,7 @@
       <view class="about-text">
         <text class="about-text-t">· KWCSSA日历微信小程序是由信息部开发，提供给组织内部成员的事件日历</text>
         <text class="about-text-t">· 微信小程序使用后可在“发现”页面中，朋友圈下方的小程序功能里再次打开，也可点击微信群右上角按钮，在菜单->聊天小程序中打开</text>
-        <text class="about-text-t">· 如日历或列表没有及时更新，请在设置页面点击刷新列表来更新数据</text>
+        <text class="about-text-t">· 如日历或列表没有及时更新，在日历页面可下拉刷新，在列表页面可点击刷新按钮刷新，也可在设置页面点击刷新事件来完成刷新</text>
         <text class="about-text-t">· 如在使用过程中发现问题，或希望对小程序功能和使用提出建议，请联系信息部Terry(微信号：wtyanan)，或在设置页面中点击问题或建议来提交(因服务器限制，问题或建议功能每天只能使用一次，请主要通过微信联系)</text>
       </view>
     </view>

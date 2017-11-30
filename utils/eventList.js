@@ -13,6 +13,7 @@ eventObjectSample:
   place: "MC1231",
   content: "信息部内部会议，讨论下一步计划",
   editLevel: 1 // 2 for President 1 for Group Leaders
+  priority: 1 // 2 3 4 5 6 7 8 9, priority decrese from 9 to 1
 }
 */
 
@@ -27,7 +28,21 @@ var userInfo;
 
 var lastUpdated;
 
-function addEvent(year, month, day, title, group, groupId, startTime, endTime, time, place, content, editLevel){
+function compareEvent(event1, event2){
+  if (event1.priority > event2.priority){
+    return -1;
+  } else if (event1.priority < event2.priority){
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+function sortEventList(){
+  eventList.sort(compareEvent);
+}
+
+function addEvent(year, month, day, title, group, groupId, startTime, endTime, time, place, content, editLevel, priority){
   wx.showLoading({
     title: "添加中",
   })
@@ -48,7 +63,8 @@ function addEvent(year, month, day, title, group, groupId, startTime, endTime, t
     time: time,
     place: place,
     content: content,
-    editLevel: editLevel
+    editLevel: editLevel,
+    priority: priority
   };
   let tableID = 3105;
   let newEvent = new wx.BaaS.TableObject(tableID);
@@ -84,7 +100,7 @@ function addEvent(year, month, day, title, group, groupId, startTime, endTime, t
   })
 }
 
-function downloadEventList(callBack){
+function downloadEventList(callBack) {
   let tableID = 3105;
   let table = new wx.BaaS.TableObject(tableID);
   table.find().then( (res) => {
@@ -105,7 +121,8 @@ function downloadEventList(callBack){
         time: objectList[i].time,
         place: objectList[i].place,
         content: objectList[i].content,
-        editLevel: objectList[i].editLevel
+        editLevel: objectList[i].editLevel,
+        priority: objectList[i].priority
       };
       masterList.push(event);
     }
@@ -161,6 +178,7 @@ function refreshEventList(){
     eventList = masterList;
     length = masterList.length;
   }
+  sortEventList();
   listUpdated = true;
   listUpdateTimes = 5;
   wx.setStorageSync("eventList", eventList);
@@ -277,6 +295,7 @@ function checkUpdate(){
 
 function getMasterList() {
   updateListSync();
+  masterList.sort(compareEvent);
   return masterList;
 }
 

@@ -17,6 +17,7 @@
       <view id="group5" class="field-group-content" style="{{groupStyle[4]}}" bindtap="groupSelect">信息部</view>
       <view id="group6" class="field-group-content" style="{{groupStyle[5]}}" bindtap="groupSelect">宣传部</view>
       <view id="group7" class="field-group-content" style="{{groupStyle[6]}}" bindtap="groupSelect">平台策划部</view>
+      <view id="group8" class="field-group-content" style="{{groupStyle[7]}}" bindtap="groupSelect">部长团</view>
     </view>
   </view>
   <view class="vfields fields" hidden="{{!controlPermission}}">
@@ -39,6 +40,20 @@
       <picker mode="time" value="{{pickTimeEnd}}" bindchange="pickTimeEndChange" style="width: 23vw; text-align: center;">
         <view>{{selectTimeEnd}}</view>
       </picker>
+    </view>
+  </view>
+  <view class="vfields fields">
+    <view class="field-name-v">优先级 (数字最大为最优先)：</view>
+    <view class="field-groups-row">
+      <view id="1" class="field-group-content-p" bindtap="prioritySelect" style="{{priority[0].style}}">1</view>
+      <view id="2" class="field-group-content-p" bindtap="prioritySelect" style="{{priority[1].style}}">2</view>
+      <view id="3" class="field-group-content-p" bindtap="prioritySelect" style="{{priority[2].style}}">3</view>
+      <view id="4" class="field-group-content-p" bindtap="prioritySelect" style="{{priority[3].style}}">4</view>
+      <view id="5" class="field-group-content-p" bindtap="prioritySelect" style="{{priority[4].style}}">5</view>
+      <view id="6" class="field-group-content-p" bindtap="prioritySelect" style="{{priority[5].style}}" hidden="{{!controlPermission}}">6</view>
+      <view id="7" class="field-group-content-p" bindtap="prioritySelect" style="{{priority[6].style}}" hidden="{{!controlPermission}}">7</view>
+      <view id="8" class="field-group-content-p" bindtap="prioritySelect" style="{{priority[7].style}}" hidden="{{!controlPermission}}">8</view>
+      <view id="9" class="field-group-content-p" bindtap="prioritySelect" style="{{priority[8].style}}" hidden="{{!controlPermission}}">9</view>
     </view>
   </view>
   <view class="fields">

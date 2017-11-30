@@ -51,16 +51,35 @@
   margin-bottom: 15rpx;
 }
 
+.event-top{
+  display: flex;
+  justify-content: space-around;
+  width: 96vw;
+}
+
+.event-top-left{
+  display: flex;
+  flex-direction: column;
+  width: 88vw;
+}
+
+.event-top-right{
+  display: flex;
+  width: 7vw;
+  margin-right: 2vw;
+}
+
 .event-rows{
   margin-left: 2%;
   margin-right: 2%;
   margin-top: 1%;
   margin-bottom: 1%;
-  width: 96%;
+  width: 100%;
   font-size: 25rpx;
 }
 
 .event-content{
+  width: 93vw;
   border: 2rpx dotted #777777;
 }
 
@@ -78,6 +97,18 @@
   font-size: 30rpx;
   margin-top: 10rpx;
   border-top: 1rpx solid #888888;
+}
+
+.event-share-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60rpx;
+  width: 49%;
+  font-size: 33rpx;
+  margin-top: 5rpx;
+  margin-right: 10rpx;
+  border: 1rpx solid #888888;
 }
 
 .button-hover{

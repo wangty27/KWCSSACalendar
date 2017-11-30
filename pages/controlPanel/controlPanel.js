@@ -62,26 +62,22 @@ Page({
   },
 
   eventRefresh: function(){
+    wx.showLoading({
+      title: '刷新中',
+      mask: true
+    })
     let _this = this;
-    eventJs.refreshEventList();
-    setTimeout(function(){
+    eventJs.refreshEventList(function(){
       eventList = eventJs.getMasterList();
+      wx.showToast({
+        title: '刷新成功',
+        mask: true,
+        duration: 700
+      })
       _this.setData({
         eventList: eventList
       })
-    }, 500)
-    setTimeout(function () {
-      eventList = eventJs.getMasterList();
-      _this.setData({
-        eventList: eventList
-      })
-    }, 1000)
-    setTimeout(function () {
-      eventList = eventJs.getMasterList();
-      _this.setData({
-        eventList: eventList
-      })
-    }, 1500)
+    });
   },
 
   eventDelete: function(e){
@@ -105,25 +101,21 @@ Page({
 
   issueRefresh: function(){
     let _this = this;
-    issueJs.refreshIssueList();
-    setTimeout(function () {
+    wx.showLoading({
+      title: '刷新中',
+      mask: true
+    })
+    issueJs.refreshIssueList(function(){
       issueList = issueJs.getIssueList();
       _this.setData({
-        issueList: issueList,
+        issueList: issueList
       })
-    }, 500)
-    setTimeout(function () {
-      issueList = issueJs.getIssueList();
-      _this.setData({
-        issueList: issueList,
+      wx.showToast({
+        title: '刷新成功',
+        mask: true,
+        duration: 700
       })
-    }, 1000)
-    setTimeout(function () {
-      issueList = issueJs.getIssueList();
-      _this.setData({
-        issueList: issueList,
-      })
-    }, 1500)
+    });
   },
 
   issueDelete: function(e){

@@ -45,7 +45,7 @@ function processCode(code) {
       ControlPermission = 0;
     }; break;
     case 61911601: {
-      Group = [1];
+      Group = [1, 7];
       ControlPermission = 1;
     }; break;
     case 74386163: {
@@ -58,7 +58,7 @@ function processCode(code) {
       ControlPermission = 0;
     }; break;
     case 45673282: {
-      Group = [2];
+      Group = [2, 7];
       ControlPermission = 1;
     }; break;
     //组织
@@ -67,7 +67,7 @@ function processCode(code) {
       ControlPermission = 0;
     }; break;
     case 67822345: {
-      Group = [3];
+      Group = [3, 7];
       ControlPermission = 1;
     }; break;
     case 17272745: {
@@ -80,7 +80,7 @@ function processCode(code) {
       ControlPermission = 0;
     }; break;
     case 18475384: {
-      Group = [4];
+      Group = [4, 7];
       ControlPermission = 1;
     }; break;
     case 38372847: {
@@ -93,7 +93,7 @@ function processCode(code) {
       ControlPermission = 0;
     }; break;
     case 73475728: {
-      Group = [5];
+      Group = [5, 7];
       ControlPermission = 1;
     }; break;
     case 38381929: {
@@ -106,7 +106,7 @@ function processCode(code) {
       ControlPermission = 0;
     }; break;
     case 28373718: {
-      Group = [6];
+      Group = [6, 7];
       ControlPermission = 1;
     }; break;
     case 38475839: {

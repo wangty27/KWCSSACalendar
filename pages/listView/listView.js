@@ -64,7 +64,6 @@ Page({
   },
 
   eventEdit: function(e){
-    console.log(e.currentTarget.dataset.object)
   },
 
   eventDelete: function(e){
@@ -94,11 +93,40 @@ Page({
     })
   },
 
-  onShareAppMessage: function () {
-    return {
-      title: "KWCSSA日历",
-      path: "/pages/login/login",
-      imageUrl: "../../resource/sharePic.png"
+  refreshList: function(){
+    let _this = this;
+    wx.showLoading({
+      title: '刷新中',
+      mask: true
+    })
+    eventJs.refreshEventList(function(){
+      eventList = eventJs.getEventList();
+      wx.hideLoading()
+      wx.showToast({
+        title: '刷新成功',
+        mask: true,
+        duration: 700
+      })
+      _this.setData({
+        eventList: eventList
+      })
+    })
+  },
+
+  onShareAppMessage: function (e) {
+    if (e.from === 'button') {
+      var event = e.target.dataset.object;
+      return {
+        title: event,
+        path: "/pages/login/login",
+        imageUrl: "../../resource/newEventShare.png"
+      }
+    } else {
+      return {
+        title: "KWCSSACalendar",
+        path: "/pages/login/login",
+        imageUrl: "../../resource/sharePic.png"
+      }
     }
   }
   

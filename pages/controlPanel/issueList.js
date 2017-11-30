@@ -1,6 +1,6 @@
 var issueList = [];
 
-function downLoadIssueList(){
+function downLoadIssueList(callBack){
   let tableID = 3203;
   let table = new wx.BaaS.TableObject(tableID);
   table.find().then( (res) => {
@@ -13,10 +13,11 @@ function downLoadIssueList(){
         user: objectList[i].User,
         content: objectList[i].Content,
         id: objectList[i].id,
-        create: objectList[i].created_at
+        create: objectList[i].Created
       }
       issueList.push(issue);
     }
+    callBack();
   }, (err) => {
     wx.showModal({
       title: '错误',

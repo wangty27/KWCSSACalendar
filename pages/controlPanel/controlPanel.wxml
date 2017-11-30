@@ -13,6 +13,7 @@
       <scroll-view class="eventList-content" scroll-y="true">
         <view wx:for="{{eventList}}" wx:key="*this" class="events">
           <view class="events-field">Title: {{eventList[index].title}}</view>
+          <view class="events-field">Priority: {{eventList[index].priority}}</view>
           <view class="events-field">Group: {{eventList[index].group}}</view>
           <view class="events-field">Time: {{eventList[index].time}}</view>
           <view class="events-field">Place: {{eventList[index].place}}</view>

@@ -11,13 +11,24 @@ const day = date.getDate();
 
 var todayDate = [year, month, day].map(util.formatNumber).join('-')
 
-var groupStyle=["", "", "", "", "", "", ""]
-var groupSelected=[false, false, false, false, false, false, false]
+var groupStyle=["", "", "", "", "", "", "", ""]
+var groupSelected=[false, false, false, false, false, false, false, false]
 var pageTitle=["添加事件", "修改事件"]
 var eventTitle = "";
 var eventPlace = "";
 var eventContent = "";
-var level=[{style: "", select: false}, {style: "", select: false}]
+var level = [{style: "", select: false}, {style: "", select: false}]
+var priority = [
+  {style: "", select: false},
+  {style: "", select: false},
+  {style: "", select: false},
+  {style: "", select: false},
+  {style: "", select: false},
+  {style: "", select: false},
+  {style: "", select: false},
+  {style: "", select: false},
+  {style: "", select: false},
+]
 var controlPermission;
 
 var masterPermission = false;
@@ -25,12 +36,12 @@ var masterPermission = false;
 function changeGroupStyle(id){
   if (id == 0){
     if (groupStyle[0] == ""){
-      for (var i = 0; i < 7; ++i){
+      for (var i = 0; i < 8; ++i){
         groupStyle[i] = "background: #555555; color: #FFFFFF";
         groupSelected[i] = true;
       }
     } else {
-      for (var i = 0; i < 7; ++i){
+      for (var i = 0; i < 8; ++i){
         groupStyle[i] = "";
         groupSelected[i] = false;
       }
@@ -66,6 +77,22 @@ function changeLevelStyle(id){
     level[1] = {
       style: "background: #555555; color: #FFFFFF",
       select: true,
+    }
+  }
+}
+
+function changePrioirtyStyle(id){
+  for (var i = 0; i < 9; ++i){
+    if (i == id - 1){
+      priority[i] = {
+        style: "background: #555555; color: #FFFFFF",
+        select: true
+      }
+    } else {
+      priority[i] = {
+        style: "",
+        select: false
+      }
     }
   }
 }
@@ -134,6 +161,7 @@ Page({
       case "group5": changeGroupStyle(4); break;
       case "group6": changeGroupStyle(5); break;
       case "group7": changeGroupStyle(6); break;
+      case "group8": changeGroupStyle(7); break;
       default: break;
     }
     this.setData({
@@ -182,6 +210,13 @@ Page({
     eventContent = e.detail.value;
   },
 
+  prioritySelect: function(e){
+    changePrioirtyStyle(e.target.id);
+    this.setData({
+      priority: priority
+    })
+  },
+
   submitEvent: function(){
     var title = eventTitle != "";
     var date = this.data.selectDate;
@@ -193,7 +228,9 @@ Page({
     var groupS = false;
     var levelS = false;
     var levelR;
-    for (var i = 0; i < 7; ++i){
+    var priorityS = false;
+    var priorityR;
+    for (var i = 0; i < 8; ++i){
       if (groupSelected[i]){
         groupS = true;
         break;
@@ -212,9 +249,16 @@ Page({
       levelR = 1;
       levelS = true;
     }
+    for (var i = 0; i < 9; ++i){
+      if (priority[i].select == true){
+        priorityS = true;
+        priorityR = i + 1;
+        break;
+      }
+    }
 
-    if (title && time && place && content && groupS && levelS){
-      functions.addEvent(eventTitle, groupSelected, date, startTime, endTime, eventPlace, eventContent, levelR)
+    if (title && time && place && content && groupS && levelS && priorityS){
+      functions.addEvent(eventTitle, groupSelected, date, startTime, endTime, eventPlace, eventContent, levelR, priorityR)
     } else {
       wx.showModal({
         title: "错误",

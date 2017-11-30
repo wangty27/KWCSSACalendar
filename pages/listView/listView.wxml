@@ -1,19 +1,32 @@
 <!--pages/listView/listView.wxml-->
 <view class="wrapper">
   <view class="top-bar">
-    <view class="top-space" hidden="{{!controlPermission}}"></view>
+    <view class="top-space" hover-class="button-hover" hover-stay-time="100" bindtap="refreshList">
+      <image src="../../resource/refreshBtn.png" style="height: 5.5vh; width: 5.5vh;"></image>
+    </view>
     <view class="top-title">事件列表</view>
     <view class="top-space" hover-class="button-hover" hover-stay-time="100" hidden="{{!controlPermission}}" bindtap="eventAdd">
       <image src="../../resource/addBtn.png" style="height: 5.5vh; width: 5.5vh;"></image>
     </view>
+    <view class="top-space" hidden="{{controlPermission}}"></view>
   </view>
   <scroll-view class="events-part" scroll-y="true">
     <view wx:for="{{eventList}}" wx:key="*this" class="events">
-      <view class="event-rows" style="font-size: 35rpx;">{{eventList[index].title}}</view>
-      <view class="event-rows" >{{eventList[index].group}}</view>
-      <view class="event-rows">{{eventList[index].time}}</view>
-      <view class="event-rows">{{eventList[index].place}}</view>
-      <view class="event-rows event-content">{{eventList[index].content}}</view>
+      <view class="event-top">
+        <view class="event-top-left">
+          <view class="event-rows" style="font-size: 35rpx;">{{eventList[index].title}}</view>
+          <view class="event-rows">优先级：{{eventList[index].priority}}</view>
+          <view class="event-rows">{{eventList[index].group}}</view>
+          <view class="event-rows">{{eventList[index].time}}</view>
+          <view class="event-rows">{{eventList[index].place}}</view>
+          <view class="event-rows event-content">{{eventList[index].content}}</view>
+        </view>
+        <view class="event-top-right">
+          <button data-object="{{eventList[index].title}}" open-type="share" plain class="event-share-button" hidden="{{controlPermission < eventList[index].editLevel}}">转</button>
+        </view>
+      </view>
+      <view class="event-bottom">
+      </view>
       <view class="event-controls" hidden="{{controlPermission < eventList[index].editLevel}}">
         <view class="event-controls-button" hover-class="button-hover" hover-stay-time="100" bindtap="eventEdit" data-object="{{eventList[index]}}" hidden>编辑</view>
         <view class="event-controls-button" hover-class="button-hover" hover-stay-time="100" style="color: #FF0000; border-left 1rpx solid #888888; width: 100%;" bindtap="eventDelete" data-object="{{eventList[index]}}">删除</view>

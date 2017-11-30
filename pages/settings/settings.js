@@ -2,6 +2,7 @@
 
 const eventJs = require("../../utils/eventList.js");
 const userJs = require("../../utils/userInfo.js")
+const util = require("../../utils/util.js");
 
 var userInfo;
 var name;
@@ -54,6 +55,7 @@ function printGroup(group){
       case 4: relval += " 信息部秘书"; break;
       case 5: relval += " 宣传部秘书"; break;
       case 6: relval += " 平台策划部秘书"; break;
+      case 7: relval += " 部长团"; break;
       case 8: showPanel = true; break;
       default: break;
     }
@@ -100,11 +102,16 @@ Page({
     if (id == "refresh"){
       wx.showLoading({
         title: '刷新中',
+        mask: true
       })
-      setTimeout(function(){
-        wx.hideLoading()
-      }, 2000)
-      eventJs.refreshEventList();
+      eventJs.refreshEventList(function(){
+        wx.hideLoading();
+        wx.showToast({
+          title: '刷新成功',
+          mask: true,
+          duration: 700
+        })
+      });
     } else if (id == "relogin"){
       wx.navigateTo({
         url: "../login/login",
@@ -164,10 +171,19 @@ Page({
         title: '提交中',
         mask: true
       })
+      var date = new Date();
+      const year = date.getFullYear()
+      const month = date.getMonth() + 1
+      const day = date.getDate()
+      const hour = date.getHours()
+      const minute = date.getMinutes()
+      const second = date.getSeconds()
+      var time = [year, month, day].map(util.formatNumber).join('/') + ' ' + [hour, minute, second].map(util.formatNumber).join(':');
       let entry = {
         User: userInfo.name,
         Title: issue.title,
-        Content: issue.content
+        Content: issue.content,
+        Created: time
       }
       table.set(entry).save().then( (res) => {
         wx.hideLoading();

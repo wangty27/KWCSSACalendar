@@ -54,7 +54,7 @@ addEvent(year, month, day, title, group, groupId, startTime, endTime, time, plac
 }
 */
 
-function addEventToList(title, group, date, startTime, endTime, place, content, level){
+function addEventToList(title, group, date, startTime, endTime, place, content, level, priority){
   var groupName = "";
   var groupId = [];
   date = date.split("-");
@@ -64,9 +64,9 @@ function addEventToList(title, group, date, startTime, endTime, place, content, 
   var time = year + "年" + month + "月" + day + "日" + "  " + startTime + " - " + endTime;
   if (group[0] == true){
     groupName = "全员";
-    groupId = [1, 2, 3, 4, 5, 6];
+    groupId = [1, 2, 3, 4, 5, 6, 7];
   } else {
-    for (var i = 1; i < 7; ++i){
+    for (var i = 1; i < 8; ++i){
       if (group[i]){
         switch(i){
           case 1: groupName += "外联部 "; break;
@@ -75,13 +75,14 @@ function addEventToList(title, group, date, startTime, endTime, place, content, 
           case 4: groupName += "信息部 "; break;
           case 5: groupName += "宣传部 "; break;
           case 6: groupName += "平台策划部 "; break;
+          case 7: groupName += "部长团 "; break;
           default: break;
         }
         groupId.push(i);
       }
     }
   }
-  var successful = eventList.addEvent(year, month, day, title, groupName, groupId, startTime, endTime, time, place, content, level);
+  var successful = eventList.addEvent(year, month, day, title, groupName, groupId, startTime, endTime, time, place, content, level, priority);
   return successful;
 }
 

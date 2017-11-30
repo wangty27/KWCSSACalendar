@@ -73,6 +73,15 @@ page{
   margin: 8rpx;
 }
 
+.field-group-content-p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8vw;
+  border: 2rpx solid #777777;
+  margin: 8rpx;
+}
+
 .submit{
   display: flex;
   justify-content: center;

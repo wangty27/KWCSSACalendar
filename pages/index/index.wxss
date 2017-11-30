@@ -11,7 +11,7 @@
 .calendar-part{
   display: flex;
   flex-direction: column;
-  height: 55%;
+  height: 58%;
   width: 100%;
 }
 
@@ -22,15 +22,15 @@
   height: 11%;
 }
 
-.refresh-button{
-  display: flex;
-  width: 10%;
+.topbar-buttons{
+  width: 10%; 
   height: 100%;
-  align-items: center;
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.refresh-button-hover{
+.button-hover{
   background: #ECECEC;
 }
 
@@ -79,7 +79,7 @@
 .event-part{
   display: flex;
   flex-direction: column;
-  height: 43%;
+  height: 41%;
   width: 100%;
   margin-top: 3%;
   border-top: 2rpx solid #000000;

@@ -2,10 +2,13 @@
 <view class="wrapper">
   <view class="calendar-part">
     <view class="calendar-topbar">
-      <view style="width: 10%; height: 100%;"></view>
+      <view data-id="toLeft" class="topbar-buttons" hover-class="button-hover" hover-stay-time="100" bindtap="toBtnClick">
+        <image src="../../resource/toLeft.png" style="margin-right: 20%; width: 70%; height: 70%;"></image>
+      </view>
       <view style="width: 80%; text-align: center; font-size: 50rpx;">{{currentDate}}</view>
-      <!-- view class="refresh-button" hover-class="refresh-button-hover" hover-stay-time="100" bindtap="refreshEventList"><image src="../../resource/refreshBtn.png" style="height: 5.5vh; width: 5.5vh;"></image></view -->
-      <view style="width: 10%; height: 100%;"></view>
+      <view data-id="toRight" class="topbar-buttons" hover-class="button-hover" hover-stay-time="100" bindtap="toBtnClick">
+        <image src="../../resource/toRight.png" style="margin-left: 20%; width: 70%; height: 70%;"></image>
+      </view>
     </view>
     <view class="calendar-week">
       <view wx:for="{{weekName}}" wx:key="*this" class="week-names">
@@ -14,7 +17,7 @@
     </view>
     <view class="calendar-date">
       <view wx:for="{{dates}}" wx:key="*this" wx:for-index="vindex" class="dates-vertical">
-        <view wx:for="{{dates[vindex]}}" wx:key="this->key" wx:for-index="hindex" class="dates-horizontal" data-key="{{dates[vindex][hindex].key}}" data-key="{{dates[vindex][hindex].key}}" style="{{dates[vindex][hindex].style}}" bindtap="dateTap">
+        <view wx:for="{{dates[vindex]}}" wx:key="this->key" wx:for-index="hindex" class="dates-horizontal" data-key="{{dates[vindex][hindex].key}}" style="{{dates[vindex][hindex].style}}" bindtap="dateTap">
           {{dates[vindex][hindex].date}}
         </view>
       </view>
@@ -25,6 +28,7 @@
       <view class="events-container">
         <view class="events-content">
           <view class="events-row" style="font-size: 35rpx;">{{events[index].title}}</view>
+          <view class="events-row">优先级：{{events[index].priority}}</view>
           <view class="events-row">{{events[index].group}}</view>
           <view class="events-row">{{events[index].time}}</view>
           <view class="events-row">{{events[index].place}}</view>
